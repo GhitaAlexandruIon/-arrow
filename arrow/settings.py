@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -119,7 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'blog/static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'blog/static')
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'blog/templates/blog')
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'blog/static')]
 LOGIN_REDIRECT_URL = '/'

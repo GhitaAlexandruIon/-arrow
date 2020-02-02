@@ -1,22 +1,44 @@
+{#{% extends 'blog/base.html' %}#}
+{##}
+{#{% block content %}#}
+{#<div class="jumbotron">#}
+{#<h2 class="gradient-text">Please Login:</h2>#}
+{#<h3 class="gradient-text">(Must be SuperUser, please check with the site admin)</h3>#}
+{##}
+{#{% if form.errors %}#}
+{##}
+{#    <p>Your username and password didn't matck! Please try agaon.</p>#}
+{##}
+{#{% endif %}#}
+{#    <form action="{% url 'login' %}" method="POST">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <input type="submit" class="btn btn-primary" value="Login">#}
+{#        <input type="hidden" name="next" value="{{ next }}">#}
+{#    </form>#}
+{##}
+{#</div>#}
+{##}
+{#{% endblock %}#}
+
 {% extends 'blog/base.html' %}
 
+
 {% block content %}
-<div class="jumbotron">
-<h2 class="gradient-text">Please Login:</h2>
-<h3 class="gradient-text">(Must be SuperUser, please check with the site admin)</h3>
+  <div class="jumbotron">
 
-{% if form.errors %}
+    <h2>Please Login: </h2>
+    <h3>(Must be SuperUser, please check admin for issues.)</h3>
+    {% if form.errors %}
+        <p>Your username and password didn't match.Please try again!</p>
+    {% endif %}
 
-    <p>Your username and password didn't matck! Please try agaon.</p>
+    <form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+        {{form.as_p}}
 
-{% endif %}
-    <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" class="btn btn-primary" value="Login">
-        <input type="hidden" name="next" value="{{ next }}">
+        <input type="submit" class='btn btn-primary' value="Login" />
+        <input type="hidden" name="next" value="{{ next }}" />
     </form>
-
-</div>
-
+  </div>
 {% endblock %}
