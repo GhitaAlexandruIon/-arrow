@@ -51,7 +51,6 @@ class DraftListView(LoginRequiredMixin, ListView):
         return Post.objects.filter(published_date__isnull=True).order_by('create_date')
 
 
-@login_required
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == 'Post':
