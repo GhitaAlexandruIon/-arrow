@@ -8,7 +8,6 @@
      <meta name="keywords" content="HTML,CSS,Django,Python">
     <meta name="description" content="Django Blog">
     <meta name="author" content="Ghita Alexandru">
-    <meta http-equiv="refresh" content="90">
     <title>Arrow</title>
     <!--  Bootstrap -->
 {#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"#}
@@ -27,6 +26,7 @@
           type="text/css" media="screen" >
     <!--  Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'css/canvas.css' %}">
     <!--  Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
 </head>
@@ -41,8 +41,8 @@
       <ul class="nav navbar-nav">
         <li><a class='navbar-brand bigbrand' href="{% url 'post_list' %}">My Tech blog</a></li>
         <li><a href="{% url 'about'%}">About</a></li>
-        <li><a href="https://www.github.com">Github</a></li>
-        <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+        <li><a href="https://github.com/GhitaAlexandruIon">Github</a></li>
+        <li><a href="https://www.linkedin.com/in/alexandru-ghita-876178106/">LinkedIn</a></li>
 
       </ul>
 
@@ -85,8 +85,53 @@
         </div>
 
 {# SCRIPTS#}
+<div><canvas></canvas></div>
 
 <script type="text/javascript" src="{% static 'js/blog.js' %}"></script>
+
+<script>
+
+    let t = 0;
+    let c = document.querySelector("canvas");
+    let $ = c.getContext('2d');
+    c.width = window.innerWidth;
+    c.height = window.innerHeight;
+    $.fillStyle = 'hsla(0,0%,0%,1)';
+
+    window.addEventListener('resize', function () {
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+    }, false);
+
+    function draw() {
+        $.globalCompositeOperation = 'source-over';
+        $.fillStyle = 'hsla(0,0%,0%,.1)';
+        $.fillRect(0, 0, c.width, c.height);
+        let foo, i, r;
+        foo = Math.sin(t) * 2 * Math.PI;
+        for (i = 0; i < 400; ++i) {
+            r = 400 * Math.sin(i * foo);
+            $.globalCompositeOperation = '';
+            $.fillStyle = 'hsla(' + i + 12 + ',100%, 60%,1)';
+            $.beginPath();
+            $.arc(Math.sin(i) * r + (c.width / 2),
+                Math.cos(i) * r + (c.height / 2),
+                1.5, 0, Math.PI * 2);
+            $.fill();
+
+        }
+        t += 0.000005;
+        return t %= 2 * Math.PI;
+
+    }
+
+    function run() {
+        window.requestAnimationFrame(run);
+        draw();
+    }
+
+    run();
+</script>
 
 </body>
 
