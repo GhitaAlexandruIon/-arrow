@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '534@o#d(ju+411q_4k7st7)pqfys8!8!z!(h$c+%uq1g$b+4s5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -122,5 +122,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'blog/static')
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'blog/templates/blog')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'blog/static')]
 LOGIN_REDIRECT_URL = '/'
