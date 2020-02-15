@@ -4,135 +4,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-     <meta name="keywords" content="HTML,CSS,Django,Python">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="keywords" content="HTML,CSS,Django,Python">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Django Blog">
     <meta name="author" content="Ghita Alexandru">
     <title>Arrow</title>
     <!--  Bootstrap -->
-{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"#}
-{#          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">#}
-    <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
           integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
     <!--  Medium Style Editor -->
     <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
-          type="text/css" media="screen" >
+          type="text/css" media="screen">
     <!--  Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     <link rel="stylesheet" href="{% static 'css/canvas.css' %}">
     <!--  Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
 </head>
-
 <body class='loader'>
-
-
-  <nav class="navbar navbar-default techfont custom-navbar">
+<nav class="navbar navbar-default techfont custom-navbar">
     <div class="container">
-
-
-      <ul class="nav navbar-nav">
-        <li><a class='navbar-brand bigbrand' href="{% url 'post_list' %}">My Tech blog</a></li>
-        <li><a href="{% url 'about'%}">About</a></li>
-        <li><a href="https://github.com/GhitaAlexandruIon">Github</a></li>
-        <li><a href="https://www.linkedin.com/in/alexandru-ghita-876178106/">LinkedIn</a></li>
-
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right">
-        {% if user.is_authenticated %}
-        <li>
-          <a href="{% url 'post_new' %}" >New Post</a>
-        </li>
-
-        <li>
-          <a href="{% url 'post_draft_list' %}">Drafts</a>
-        </li>
-        <li>
-          <a href="{% url 'logout' %}" >Log out</a>
-        </li>
-
-        <li>
-          <a >Welcome: {{ user.username }}</a>
-        </li>
-          {% else %}
-          <li><a class='nav navbar-right' href="{% url 'login' %}" ><span class="glyphicon glyphicon-user"></span></a></li>
-        {% endif %}
-
-      </ul>
-  </div>
+        <ul class="nav navbar-nav">
+            <li><a class='navbar-brand bigbrand' href="{% url 'post_list' %}">My Tech blog</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="https://github.com/GhitaAlexandruIon" target="_blank">Github</a></li>
+            <li><a href="https://www.linkedin.com/in/alexandru-ghita-876178106/" target="_blank">LinkedIn</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'post_new' %}">New Post</a>
+                </li>
+                <li>
+                    <a href="{% url 'post_draft_list' %}">Drafts</a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">Log out</a>
+                </li>
+                <li>
+                    <a>Welcome: {{ user.username }}</a>
+                </li>
+            {% else %}
+                <li><a class='nav navbar-right' href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span></a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
 </nav>
-
-  {# The actual blog posts#}
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                  <div class="blog_posts">
-                    {% block content %}
-                    {% endblock %}
-
-                  </div>
-
-                </div>
+{# The actual blog posts#}
+<div class="content container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="blog_posts">
+                {% block content %}
+                {% endblock %}
             </div>
         </div>
-
-{# SCRIPTS#}
-<div><canvas></canvas></div>
-
+    </div>
+</div>
 <script type="text/javascript" src="{% static 'js/blog.js' %}"></script>
-
-<script>
-
-    let t = 0;
-    let c = document.querySelector("canvas");
-    let $ = c.getContext('2d');
-    c.width = window.innerWidth;
-    c.height = window.innerHeight;
-    $.fillStyle = 'hsla(0,0%,0%,1)';
-
-    window.addEventListener('resize', function () {
-        c.width = window.innerWidth;
-        c.height = window.innerHeight;
-    }, false);
-
-    function draw() {
-        $.globalCompositeOperation = 'source-over';
-        $.fillStyle = 'hsla(0,0%,0%,.1)';
-        $.fillRect(0, 0, c.width, c.height);
-        let foo, i, r;
-        foo = Math.sin(t) * 2 * Math.PI;
-        for (i = 0; i < 400; ++i) {
-            r = 400 * Math.sin(i * foo);
-            $.globalCompositeOperation = '';
-            $.fillStyle = 'hsla(' + i + 12 + ',100%, 60%,1)';
-            $.beginPath();
-            $.arc(Math.sin(i) * r + (c.width / 2),
-                Math.cos(i) * r + (c.height / 2),
-                1.5, 0, Math.PI * 2);
-            $.fill();
-
-        }
-        t += 0.000005;
-        return t %= 2 * Math.PI;
-
-    }
-
-    function run() {
-        window.requestAnimationFrame(run);
-        draw();
-    }
-
-    run();
-</script>
-
 </body>
-
 </html>

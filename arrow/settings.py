@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '534@o#d(ju+411q_4k7st7)pqfys8!8!z!(h$c+%uq1g$b+4s5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'blog',
     # third party apps
     'bootstrap4',
+
 ]
 
 MIDDLEWARE = [
