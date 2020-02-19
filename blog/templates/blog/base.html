@@ -3,8 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="HTML,CSS,Django,Python">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Django Blog">
@@ -13,13 +12,8 @@
     <!--  Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--  Medium Style Editor -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/navbar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css"
-          type="text/css" media="screen">
-    <!--  Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Russo+One" rel="stylesheet">
 </head>
 <body class='loader'>
 {#responsive navbar#}
@@ -64,7 +58,7 @@
     </div>
 </nav>
 {# The actual blog posts#}
-<div class="content container">
+<div class="content container jumbotron">
     <div class="row">
         <div class="col-md-8">
             <div class="blog_posts">
@@ -74,13 +68,14 @@
         </div>
     </div>
 </div>
-<!-- Footer -->
-<footer class="footer">
-    <div class="container ">
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="https://github.com/GhitaAlexandruIon" target="_blank"> GhitaAlexandru</a>
+        <a href="https://github.com/GhitaAlexandruIon/-arrow" target="_blank"> GhitaAlexandru</a>
     </div>
-    </div>
+    <!-- Copyright -->
+
 </footer>
 <script type="text/javascript" src="{% static 'js/blog.js' %}"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
