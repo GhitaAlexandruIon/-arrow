@@ -76,8 +76,8 @@ def post_publish(request, pk):
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
-    return redirect('post_list')
-    # return render(request, 'blog/post_confirm.delete.html')
+    # return redirect('post_list')
+    return render(request, 'blog/post_confirm_delete.html')
 
 
 @login_required
