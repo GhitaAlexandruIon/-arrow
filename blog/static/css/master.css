@@ -2,7 +2,9 @@ a:hover{
     text-decoration: none;
 }
 body{
-    background-color: black;
+    background-image: linear-gradient(black, lightgrey);
+    background-repeat: no-repeat;
+
 }
 .jumbotron{
     background-color: ghostwhite;
