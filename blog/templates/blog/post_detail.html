@@ -1,6 +1,8 @@
 {% extends 'blog/base.html' %}
+    {% block title %}
+    <title>Post Detail</title>
+{% endblock title %}
 {% block content %}
-
 <div class="jumbotron">
     <h1 class='posttitle loader'>{{ post.title }}</h1>
     {% if post.published_date %}
