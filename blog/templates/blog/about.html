@@ -1,7 +1,5 @@
 {% extends 'blog/base.html' %}
-    {% block title %}
-    <title>About</title>
-{% endblock title %}
+    {% block title %}About {{ block.super }}{% endblock %}
 {% block content %}
     <div class="jumbotron">
     <div class="container">

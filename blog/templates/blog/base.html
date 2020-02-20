@@ -8,10 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Django Blog">
     <meta name="author" content="Ghita Alexandru">
-{#    todo use a block to change the title on each page#}
-    {% block title %}
-    <title>Arrow</title>
-{% endblock title %}
+
+    <title>{% block title %}Arrow{% endblock %}</title>
+
     <!--  Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -54,9 +53,7 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <button class="btn btn-primary btn-small">
                         <a class="nav-link" href="{% url 'login' %}">Login</a>
-                    </button>
                 </li>
             {% endif %}
         </ul>
