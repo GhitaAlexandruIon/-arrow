@@ -18,6 +18,7 @@
             <a class="btn btn-danger" href="{% url 'post_remove' pk=post.pk %}">delete</a>
         {% endif %}
     </div>
+<hr>
     <hr>
     <a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
     <div class="container">
@@ -29,7 +30,8 @@
                     <a class="btn btn-danger" href="{% url 'comment_remove' pk=comment.pk %}">delete</a>
                     <a class="btn btn-primary" href="{% url 'comment_approve' pk=comment.pk %}">up</a>
                 {% endif %}
-                <p>{{ comment.text|safe|linebreaks }}</p>
+                <p>{{ comment.text|safe|linebreaks }}
+                </p>
                 <p>Posted by: <strong>{{ comment.author }}</strong></p>
             {% endif %}
         {% empty %}

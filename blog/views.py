@@ -2,10 +2,11 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from django.views.generic import (TemplateView, ListView, DetailView, CreateView, UpdateView)
-
-from blog.forms import PostForm, CommentForm
+from django.views.generic import (TemplateView, ListView, CreateView, UpdateView)
+from blog.forms import PostForm, CommentForm, ContactForm
 from blog.models import Post, Comment
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 class AboutView(TemplateView):
@@ -17,10 +18,6 @@ class PostListView(ListView):
 
     def get_queryset(self):
         return Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-
-
-# class PostDetailView(DetailView):
-#     model = Post
 
 
 def post_detail(request, pk):
@@ -92,3 +89,25 @@ def comment_approve(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
     return redirect('post_detail', pk=comment.post.pk)
+
+
+# send email views
+def emailview(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('success')
+    return render(request, "blog/contact.html", {'form': form})
+
+
+def successview(request):
+    return HttpResponse('Success! Thank you for your message.')
