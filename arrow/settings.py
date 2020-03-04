@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'blog',
+    'todo',
     # third party apps
     'bootstrap4',
 
@@ -121,6 +122,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/static_root')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles/media_root')
 
-
+LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+SENDGRID_API_KEY = os.getenv('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')
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = SENDGRID_API_KEY
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 25, 587
+EMAIL_USE_TLS = True
