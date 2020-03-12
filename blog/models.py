@@ -1,14 +1,16 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    text = models.TextField()
+    text = RichTextField()
     create_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    image = models.ImageField(null=True, blank=True, default='#')
 
     def publish(self):
         self.published_date = timezone.now()

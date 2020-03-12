@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'todo',
     # third party apps
     'bootstrap4',
-
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

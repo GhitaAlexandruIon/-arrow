@@ -8,6 +8,8 @@
         {% if post.published_date %}
             <div class="date postdate">
                 {{ post.published_date }}
+                <img src="{{ post.image.url }}" alt="picture">
+
             </div>
         {% else %}
             <a class="btn btn-primary" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
